@@ -25,6 +25,7 @@ from batchgenerators.utilities.file_and_folder_operations import maybe_mkdir_p, 
 my_output_identifier = "nnUNet"
 default_plans_identifier = "nnUNetPlans"
 default_data_identifier = 'nnUNet'
+doc_home = os.path.expanduser("~/Documents/")
 
 try:
     # base is the folder where the raw data is stored. You just need to set base only, the others will be created
@@ -32,7 +33,7 @@ try:
     # Here I use environment variables to set the base folder. Environment variables allow me to use the same code on
     # different systems (and our compute cluster). You can replace this line with something like:
     # base = "/path/to/my/folder"
-    base = "/home/huahong/Documents/Datasets/MSD"
+    base = join(doc_home, "Datasets", "MSD")
     # base = os.environ['nnUNet_base']
     raw_dataset_dir = join(base, "nnUNet_raw")
     splitted_4d_output_dir = join(base, "nnUNet_raw_splitted")
@@ -49,7 +50,7 @@ try:
     # Here I use environment variables to set the folder. Environment variables allow me to use the same code on
     # different systems (and our compute cluster). You can replace this line with something like:
     # preprocessing_output_dir = "/path/to/my/folder_with_preprocessed_data"
-    preprocessing_output_dir = "/home/huahong/Documents/Datasets/MSD/preprocessed"
+    preprocessing_output_dir = join(base, "preprocessed")
     # preprocessing_output_dir = os.environ['nnUNet_preprocessed']
 except KeyError:
     preprocessing_output_dir = None
@@ -59,7 +60,7 @@ try:
     # Here I use environment variables to set the folder. Environment variables allow me to use the same code on
     # different systems (and our compute cluster). You can replace this line with something like:
     # network_training_output_dir = "/path/to/my/folder_with_results"
-    network_training_output_dir = "/home/huahong/Documents/Checkpoints/nnunet"
+    network_training_output_dir = join(doc_home, "Checkpoints", "nnunet")
     # network_training_output_dir = os.path.join(os.environ['RESULTS_FOLDER'], my_output_identifier)
     maybe_mkdir_p(network_training_output_dir)
 except KeyError:
